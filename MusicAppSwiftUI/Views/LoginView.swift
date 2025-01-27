@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    //LoginViewCtrl
-    @Binding private var loginType: Bool
-    
-    init(loginType: Binding<Bool>) {
-        self._loginType = loginType
-    }
+    @State var loginType: Bool
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack {
             Spacer()
@@ -112,13 +108,28 @@ struct LoginView: View {
                 Text("\(!loginType ? LoginViewCtrl.alreadyHaveAccountLabel : LoginViewCtrl.dontHaveAccountLabel)")
                     .foregroundStyle(.white)
                 Button("\(!loginType ? LoginViewCtrl.loginTitle : LoginViewCtrl.signupTitle)") {
-                    
+                    self.loginType.toggle()
                 }
                 .padding()
                 .foregroundStyle(.white)
                 .fontWeight(.semibold)
             }
             .padding()
+            .navigationBarBackButtonHidden(true)//Hiding back button
+            //Creating custom back button
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: ButtonImage.backButtonImage)
+                                .foregroundStyle(.white)
+                        }
+                    }
+
+                }
+            }
         }
         .padding()
         .background(
@@ -130,5 +141,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(loginType: .constant(false))
+    LoginView(loginType: false)
 }

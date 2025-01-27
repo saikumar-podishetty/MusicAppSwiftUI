@@ -58,9 +58,9 @@ struct LaunchScreenView: View {
                 .padding(.bottom, 45)
                 .navigationDestination(for: String.self) { value in
                     if value == LaunchView.signupPath {
-                        LoginView(loginType: .constant(false))
+                        LoginView(loginType: false)
                     }else if value == LaunchView.loginPath {
-                        LoginView(loginType: .constant(true))
+                        LoginView(loginType: true)
                     }
                 }
             }

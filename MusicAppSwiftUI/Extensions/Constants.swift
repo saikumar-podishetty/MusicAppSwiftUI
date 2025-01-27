@@ -6,11 +6,16 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct AppImg {
     static let logoImage = "app_icon"
     static let googleImage = "google_icon"
     static let facebookImage = "facebook_icon"
+}
+
+struct ButtonImage {
+    static let backButtonImage = "chevron.backward"
 }
 
 struct LaunchView {
